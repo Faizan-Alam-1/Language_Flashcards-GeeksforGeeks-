@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flashcard</title>
+    </head>
+
+    <style>
+       
+        .main_body {
+
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 10px;
+
+        }
+
+        .fornt-data{
+            margin-top: 50%;
+        }
+
+        .back-data{
+            margin: 4%;
+        }
+
+        
+
+        .container {
+            position: relative;
+            width: 250px;
+            height: 300px;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            border: 3px solid black;
+
+        }
+
+        .card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .fornt {
+          
+            font-weight: bolder;
+            text-align: center;
+            font-size: 30px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: yellow;
+            backface-visibility: hidden;
+        }
+
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            background-color: grey;
+            color: white;
+            font-weight: bolder;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
+       
+
+      
+
+
+
+    </style>
+
+
+    <body>
+
+
+        <div class="main_body">
+        
+            {% for obj in data %}
+                <div class="container">
+                    <div class="card">
+                        <div class="fornt">
+                            <div class="fornt-data">
+                                {{ obj.input_box }}
+                            </div>
+                           
+
+                        </div>
+                        <div class="back">
+                            
+                             <div class="back-data">
+                                {{ obj.text_area }}
+                             </div>
+                           
+                            <div class="delete_btn">
+                                <a href="{% url 'deletecard' obj.id %}">del</a>
+                            </div>
+
+                            <div class="edit_btn">
+                                <a href="{% url 'updatecard' obj.id %}">update</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+
+      
+
+
+    </body>
+
+</html>
