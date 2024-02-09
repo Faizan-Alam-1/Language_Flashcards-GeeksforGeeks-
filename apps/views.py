@@ -3,7 +3,11 @@ from .models import Addcard
 from .forms import Addcardform
 
 def Home(request):
-    data = Addcard.objects.all()
+    query = request.GET.get('q')
+    if query:
+         data = Addcard.objects.filter(input_box__icontains=query)
+    else:
+        data = Addcard.objects.all()
     return render(request , 'Home.html' , {'data':data})
 
 def Addcards(request):
