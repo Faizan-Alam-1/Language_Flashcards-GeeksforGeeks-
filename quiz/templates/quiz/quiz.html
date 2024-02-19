@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+     {% for i in obj %}
+        {{ i.text_area }}<br>
+        {{ score }}
+        <form method="POST">
+            
+            <input id="input_data"  type="text" name="input_data">
+            {% csrf_token %}
+            <button type="submit">check</button>
+        </form>
+     {% endfor %}
+    
+</body>
+</html>
